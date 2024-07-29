@@ -55,7 +55,7 @@ export default async function handler(req: NextRequest) {
     headers.delete(key);
   });
 
-  // console.log("url.toString()", url.toString());
+  // console.log("url.toString()", url.toString(), url.host, url.pathname);
 
   try {
     const { method, body, signal } = req;

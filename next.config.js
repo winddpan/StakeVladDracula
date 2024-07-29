@@ -17,6 +17,11 @@ const nextConfig = {
         source: "/v1/(.*)",
         destination: "/api/proxy",
       },
+      // OpenAI Api path
+      {
+        source: "/chat/(.*)",
+        destination: "/api/proxy",
+      },
       // Gemini Api path
       {
         source: "/v1beta/(.*)",
