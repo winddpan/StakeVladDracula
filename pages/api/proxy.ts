@@ -26,14 +26,17 @@ export default async function handler(req: NextRequest) {
     url.host = 'generativelanguage.googleapis.com';
   } else if (url.pathname.startsWith('/headers')) {
     url.host = 'httpbin.org';
-  } else if (url.pathname.startsWith('/openai/v1')) {
-    url.host = 'api.groq.com';
+  } else if (url.pathname.startsWith('/openai/v1')) {
+    url.host = 'api.groq.com';
   } else if (url.pathname.startsWith('/v1/messages') || url.pathname.startsWith('/v1/complete')) {
-    url.host = 'api.anthropic.com';
+    url.host = 'api.anthropic.com';
   } else {
+    if (!url.pathname.startsWith('/v1')) {
+      url.pathname = "/v1" + url.pathname;
+    }
     url.host = 'api.openai.com';
   }
-  
+
   url.protocol = 'https:';
   url.port = '';
 
@@ -56,7 +59,7 @@ export default async function handler(req: NextRequest) {
 
   try {
     const { method, body, signal } = req;
-    
+
     const response = await fetch(
       url.toString(),
       {
